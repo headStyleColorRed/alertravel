@@ -8,46 +8,63 @@
 import SwiftUI
 import MapKit
 
+protocol NewJourneyViewProtocol {
+    func userHasADestination()
+}
+
 struct NewJourneyView: View {
     @ObservedObject var viewModel = NewJourneyViewModel()
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State private var selectedDistance = "1000"
     @State var location = CLLocationCoordinate2D()
     var distance = ["50", "100", "200", "500", "750", "1000", "1500", "2000", "5000"]
+    var delegate: NewJourneyViewProtocol
     
     var body: some View {
         ZStack {
             Color.AT.darkBackground
                 .edgesIgnoringSafeArea([.all])
-            VStack {
-                Text("Hi! Choose a destination")
-                    .foregroundColor(.white)
-                    .font(.headline)
-                MapView(destiny: $location)
-                    .padding(.top, 50)
-                    .padding(.bottom, 50)
-                Group {
-                    Text("Please choose a distance to be warned")
+
+            ScrollView {
+                VStack {
+                    Text("Hi! Choose a destination")
                         .foregroundColor(.white)
                         .font(.headline)
-                    Picker("", selection: $selectedDistance) {
-                        ForEach(distance, id: \.self) {
-                            Text("\($0)m")
-                                .foregroundColor(.white)
-                        }
-                    }
-                }
-                Button(action: {
-                    print("setted")
-                }) {
-                    Text("Begin")
-                        .frame(width: UIScreen.main.bounds.width / 2, height: 30, alignment: .center)
-                        .background(Color.AT.orangeDetail)
-                        .foregroundColor(.black)
                         .padding()
+                    MapView(destiny: $location)
+                        .frame(width: UIScreen.main.bounds.width, height: 250, alignment: .center)
+                    Group {
+                        Text("Choose a distance to be warned:")
+                            .foregroundColor(.white)
+                            .font(.headline)
+                        Picker("", selection: $selectedDistance) {
+                            ForEach(distance, id: \.self) {
+                                Text("\($0)m")
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        .frame(width: 200)
+                        .clipped()
+                    }
+                    Button(action: {
+                        guard location.latitude != 0.0 else { return }
+                        let finalLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+                        TravelManager.shared.setDestiny(Destiny(coordinates: finalLocation, warnDistance: Int(selectedDistance) ?? 0))
+                        self.mode.wrappedValue.dismiss()
+                        delegate.userHasADestination()
+                    }) {
+                        Text("Begin")
+                            .frame(width: UIScreen.main.bounds.width / 2, height: 30, alignment: .center)
+                            .background(Color.AT.orangeDetail)
+                            .foregroundColor(.black)
+                            .padding()
+                    }
+                    Spacer()
                 }
-                Spacer()
+                
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -78,6 +95,12 @@ struct MapView: UIViewRepresentable {
             self.gRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(tapHandler))
             self.gRecognizer.delegate = self
             self.parent.mapView.addGestureRecognizer(gRecognizer)
+            
+            guard let center = LocationManager.shared.getUserLocation()?.coordinate else { return }
+            let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+            let userRegion = MKCoordinateRegion(center: center, span: span)
+            self.parent.mapView.setRegion(userRegion, animated: true)
+            self.parent.mapView.showsUserLocation = true
         }
         
         @objc func tapHandler(_ gesture: UITapGestureRecognizer) {
@@ -90,6 +113,7 @@ struct MapView: UIViewRepresentable {
             let lastMarker = parent.mapView.annotations
             parent.mapView.removeAnnotations(lastMarker)
             parent.mapView.addAnnotation(marker)
+            parent.destiny = marker.coordinate
         }
     }
 }
@@ -115,6 +139,6 @@ class Marker: NSObject, MKAnnotation {
 
 struct NewJourney_Previews: PreviewProvider {
     static var previews: some View {
-        NewJourneyView()
+        NewJourneyView(delegate: self as! NewJourneyViewProtocol)
     }
 }

@@ -18,6 +18,8 @@
 		31F6BEFC263320920055C480 /* NewJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F6BEFB263320920055C480 /* NewJourneyView.swift */; };
 		31F6BF002633209D0055C480 /* NewJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F6BEFF2633209D0055C480 /* NewJourneyViewModel.swift */; };
 		31F6BF04263589080055C480 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F6BF03263589070055C480 /* LocationManager.swift */; };
+		5BE6B75A263727D600D4768C /* TravelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6B759263727D600D4768C /* TravelManager.swift */; };
+		5BE6B75F26372A7A00D4768C /* Destiny.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6B75E26372A7A00D4768C /* Destiny.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		31F6BEFB263320920055C480 /* NewJourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewJourneyView.swift; sourceTree = "<group>"; };
 		31F6BEFF2633209D0055C480 /* NewJourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewJourneyViewModel.swift; sourceTree = "<group>"; };
 		31F6BF03263589070055C480 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		5BE6B759263727D600D4768C /* TravelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelManager.swift; sourceTree = "<group>"; };
+		5BE6B75E26372A7A00D4768C /* Destiny.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destiny.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,15 +78,14 @@
 		313441042632E90700A22FFF /* alertravel */ = {
 			isa = PBXGroup;
 			children = (
-				31F6BEFA2633207F0055C480 /* NewJourney */,
+				5BE6B75D26372A5A00D4768C /* Entities */,
+				5BE6B75C26372A5100D4768C /* Views */,
+				5BE6B758263727BF00D4768C /* Managers */,
 				310B4E7E2632F3440008FFE1 /* Utils */,
-				313441152632EBB500A22FFF /* Journey */,
 				313441052632E90700A22FFF /* alertravelApp.swift */,
-				313441072632E90700A22FFF /* DashboardView.swift */,
 				313441092632E90800A22FFF /* Assets.xcassets */,
 				3134410E2632E90800A22FFF /* Info.plist */,
 				3134410B2632E90800A22FFF /* Preview Content */,
-				31F6BF03263589070055C480 /* LocationManager.swift */,
 			);
 			path = alertravel;
 			sourceTree = "<group>";
@@ -112,6 +115,33 @@
 				31F6BEFF2633209D0055C480 /* NewJourneyViewModel.swift */,
 			);
 			path = NewJourney;
+			sourceTree = "<group>";
+		};
+		5BE6B758263727BF00D4768C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				31F6BF03263589070055C480 /* LocationManager.swift */,
+				5BE6B759263727D600D4768C /* TravelManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		5BE6B75C26372A5100D4768C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				313441072632E90700A22FFF /* DashboardView.swift */,
+				313441152632EBB500A22FFF /* Journey */,
+				31F6BEFA2633207F0055C480 /* NewJourney */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5BE6B75D26372A5A00D4768C /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				5BE6B75E26372A7A00D4768C /* Destiny.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,11 +214,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				313441172632EBDE00A22FFF /* JourneyView.swift in Sources */,
+				5BE6B75A263727D600D4768C /* TravelManager.swift in Sources */,
 				310B4E802632F34D0008FFE1 /* ColorsExtension.swift in Sources */,
 				3134411F2632EC2A00A22FFF /* JourneyModel.swift in Sources */,
 				3134411C2632EC1E00A22FFF /* JourneyViewModel.swift in Sources */,
 				313441082632E90700A22FFF /* DashboardView.swift in Sources */,
 				31F6BEFC263320920055C480 /* NewJourneyView.swift in Sources */,
+				5BE6B75F26372A7A00D4768C /* Destiny.swift in Sources */,
 				31F6BF002633209D0055C480 /* NewJourneyViewModel.swift in Sources */,
 				313441062632E90700A22FFF /* alertravelApp.swift in Sources */,
 				31F6BF04263589080055C480 /* LocationManager.swift in Sources */,
@@ -319,9 +351,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"alertravel/Preview Content\"";
-				DEVELOPMENT_TEAM = RQ999C52C5;
+				DEVELOPMENT_TEAM = C7WV3V6QHH;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = alertravel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -329,8 +362,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tangerinecoder.alertravel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tangerinecoder.alertrave;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -341,9 +375,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"alertravel/Preview Content\"";
-				DEVELOPMENT_TEAM = RQ999C52C5;
+				DEVELOPMENT_TEAM = C7WV3V6QHH;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = alertravel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -351,8 +386,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tangerinecoder.alertravel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tangerinecoder.alertrave;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

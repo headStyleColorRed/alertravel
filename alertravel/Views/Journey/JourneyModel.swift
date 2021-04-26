@@ -8,5 +8,5 @@
 import Foundation
 
 struct JourneyModel {
-    
+    let destiny: Destiny
 }

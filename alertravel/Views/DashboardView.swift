@@ -26,6 +26,7 @@ struct DashboardView: View {
     }
     init() {
         UITabBar.appearance().barTintColor = UIColor(named: "DarkBackground")
+        LocationManager.shared.requestLocation()
     }
 }
 
