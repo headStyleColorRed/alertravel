@@ -11,7 +11,7 @@ import SwiftUI
 struct alertravelApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            DashboardView()
         }
     }
 }

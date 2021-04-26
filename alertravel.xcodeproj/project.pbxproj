@@ -7,19 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		310B4E802632F34D0008FFE1 /* ColorsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B4E7F2632F34D0008FFE1 /* ColorsExtension.swift */; };
 		313441062632E90700A22FFF /* alertravelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313441052632E90700A22FFF /* alertravelApp.swift */; };
-		313441082632E90700A22FFF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313441072632E90700A22FFF /* ContentView.swift */; };
+		313441082632E90700A22FFF /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313441072632E90700A22FFF /* DashboardView.swift */; };
 		3134410A2632E90800A22FFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 313441092632E90800A22FFF /* Assets.xcassets */; };
 		3134410D2632E90800A22FFF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3134410C2632E90800A22FFF /* Preview Assets.xcassets */; };
+		313441172632EBDE00A22FFF /* JourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313441162632EBDE00A22FFF /* JourneyView.swift */; };
+		3134411C2632EC1E00A22FFF /* JourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134411B2632EC1E00A22FFF /* JourneyViewModel.swift */; };
+		3134411F2632EC2A00A22FFF /* JourneyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134411E2632EC2A00A22FFF /* JourneyModel.swift */; };
+		31F6BEFC263320920055C480 /* NewJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F6BEFB263320920055C480 /* NewJourneyView.swift */; };
+		31F6BF002633209D0055C480 /* NewJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F6BEFF2633209D0055C480 /* NewJourneyViewModel.swift */; };
+		31F6BF04263589080055C480 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F6BF03263589070055C480 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		310B4E7F2632F34D0008FFE1 /* ColorsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsExtension.swift; sourceTree = "<group>"; };
 		313441022632E90700A22FFF /* alertravel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = alertravel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		313441052632E90700A22FFF /* alertravelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alertravelApp.swift; sourceTree = "<group>"; };
-		313441072632E90700A22FFF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		313441072632E90700A22FFF /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		313441092632E90800A22FFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3134410C2632E90800A22FFF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3134410E2632E90800A22FFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		313441162632EBDE00A22FFF /* JourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyView.swift; sourceTree = "<group>"; };
+		3134411B2632EC1E00A22FFF /* JourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyViewModel.swift; sourceTree = "<group>"; };
+		3134411E2632EC2A00A22FFF /* JourneyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyModel.swift; sourceTree = "<group>"; };
+		31F6BEFB263320920055C480 /* NewJourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewJourneyView.swift; sourceTree = "<group>"; };
+		31F6BEFF2633209D0055C480 /* NewJourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewJourneyViewModel.swift; sourceTree = "<group>"; };
+		31F6BF03263589070055C480 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		310B4E7E2632F3440008FFE1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				310B4E7F2632F34D0008FFE1 /* ColorsExtension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		313440F92632E90700A22FFF = {
 			isa = PBXGroup;
 			children = (
@@ -52,11 +74,15 @@
 		313441042632E90700A22FFF /* alertravel */ = {
 			isa = PBXGroup;
 			children = (
+				31F6BEFA2633207F0055C480 /* NewJourney */,
+				310B4E7E2632F3440008FFE1 /* Utils */,
+				313441152632EBB500A22FFF /* Journey */,
 				313441052632E90700A22FFF /* alertravelApp.swift */,
-				313441072632E90700A22FFF /* ContentView.swift */,
+				313441072632E90700A22FFF /* DashboardView.swift */,
 				313441092632E90800A22FFF /* Assets.xcassets */,
 				3134410E2632E90800A22FFF /* Info.plist */,
 				3134410B2632E90800A22FFF /* Preview Content */,
+				31F6BF03263589070055C480 /* LocationManager.swift */,
 			);
 			path = alertravel;
 			sourceTree = "<group>";
@@ -67,6 +93,25 @@
 				3134410C2632E90800A22FFF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		313441152632EBB500A22FFF /* Journey */ = {
+			isa = PBXGroup;
+			children = (
+				313441162632EBDE00A22FFF /* JourneyView.swift */,
+				3134411B2632EC1E00A22FFF /* JourneyViewModel.swift */,
+				3134411E2632EC2A00A22FFF /* JourneyModel.swift */,
+			);
+			path = Journey;
+			sourceTree = "<group>";
+		};
+		31F6BEFA2633207F0055C480 /* NewJourney */ = {
+			isa = PBXGroup;
+			children = (
+				31F6BEFB263320920055C480 /* NewJourneyView.swift */,
+				31F6BEFF2633209D0055C480 /* NewJourneyViewModel.swift */,
+			);
+			path = NewJourney;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +183,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				313441082632E90700A22FFF /* ContentView.swift in Sources */,
+				313441172632EBDE00A22FFF /* JourneyView.swift in Sources */,
+				310B4E802632F34D0008FFE1 /* ColorsExtension.swift in Sources */,
+				3134411F2632EC2A00A22FFF /* JourneyModel.swift in Sources */,
+				3134411C2632EC1E00A22FFF /* JourneyViewModel.swift in Sources */,
+				313441082632E90700A22FFF /* DashboardView.swift in Sources */,
+				31F6BEFC263320920055C480 /* NewJourneyView.swift in Sources */,
+				31F6BF002633209D0055C480 /* NewJourneyViewModel.swift in Sources */,
 				313441062632E90700A22FFF /* alertravelApp.swift in Sources */,
+				31F6BF04263589080055C480 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
