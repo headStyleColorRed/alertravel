@@ -20,6 +20,7 @@
 		31F6BF04263589080055C480 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F6BF03263589070055C480 /* LocationManager.swift */; };
 		5BE6B75A263727D600D4768C /* TravelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6B759263727D600D4768C /* TravelManager.swift */; };
 		5BE6B75F26372A7A00D4768C /* Destiny.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6B75E26372A7A00D4768C /* Destiny.swift */; };
+		5BE6B77A263752FB00D4768C /* train-horn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BE6B779263752FB00D4768C /* train-horn.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		31F6BF03263589070055C480 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		5BE6B759263727D600D4768C /* TravelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelManager.swift; sourceTree = "<group>"; };
 		5BE6B75E26372A7A00D4768C /* Destiny.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destiny.swift; sourceTree = "<group>"; };
+		5BE6B779263752FB00D4768C /* train-horn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "train-horn.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		313441042632E90700A22FFF /* alertravel */ = {
 			isa = PBXGroup;
 			children = (
+				5BE6B778263752EE00D4768C /* Assets */,
 				5BE6B75D26372A5A00D4768C /* Entities */,
 				5BE6B75C26372A5100D4768C /* Views */,
 				5BE6B758263727BF00D4768C /* Managers */,
@@ -144,6 +147,14 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		5BE6B778263752EE00D4768C /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				5BE6B779263752FB00D4768C /* train-horn.mp3 */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -201,6 +212,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BE6B77A263752FB00D4768C /* train-horn.mp3 in Resources */,
 				3134410D2632E90800A22FFF /* Preview Assets.xcassets in Resources */,
 				3134410A2632E90800A22FFF /* Assets.xcassets in Resources */,
 			);

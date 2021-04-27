@@ -21,21 +21,34 @@ struct JourneyView: View, NewJourneyViewProtocol {
                 Color.AT.darkBackground
                     .edgesIgnoringSafeArea([.all])
                 
-                if viewModel.isUserTraveling {
-                    CurrentJourneyView(distanceToDestiny: $viewModel.distanceToDestiny, warningDistance: viewModel.warningDistance)
-                } else {
-                    NoJourneyView() {
-                        action = 1
-                    }
+                switch viewModel.journeyStatus {
+                case .noJourney:
+                    NoJourneyView() { action = 1 }
+                case .traveling:
+                    CurrentJourneyView(distanceToDestiny: $viewModel.distanceToDestiny,
+                                       warningDistance: viewModel.warningDistance,
+                                       stopJourney: stopJourney)
+                case .inDestination:
+                    DestinationReached() { action = 1 }
                 }
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitle("Traveling", displayMode: .inline)
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
+            viewModel.appWentBackground()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+            viewModel.appBecameActive()
+        }
     }
     
     
     func userHasADestination() {
         viewModel.startJourney()
+    }
+    
+    func stopJourney() {
+        viewModel.endJourney()
     }
 }
 
@@ -43,9 +56,7 @@ struct CurrentJourneyView: View {
     @Binding var distanceToDestiny: Int
     @State var warningDistance: Int?
     @State private var distanceArray = [0, 0, 0, 0, 0]
-    
-    
-    
+    @State var stopJourney: () -> Void
     
     var body: some View {
         ZStack {
@@ -53,6 +64,7 @@ struct CurrentJourneyView: View {
                 Text("Relax and enjoy the journey 😎 \n\n You'll be alerted once you are within \(warningDistance ?? 0) meters of your destination")
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
+                    .padding()
                 HStack {
                     ForEach(distanceArray.indices) { index in
                         CustomPicker(selectedNumber: $distanceArray[index])
@@ -68,7 +80,7 @@ struct CurrentJourneyView: View {
             VStack {
                 Spacer()
                 Button(action: {
-                    print("stop")
+                    stopJourney()
                 }) {
                     Text("Stop")
                         .frame(width: 100, height: 100)
@@ -79,6 +91,7 @@ struct CurrentJourneyView: View {
                 .padding(.bottom, 50)
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     private func splitDistance(_ distance: Int) -> [Int] {
@@ -89,7 +102,6 @@ struct CurrentJourneyView: View {
         for _ in 0...(4 - splittedDistance.count) {
             splittedDistance.insert(0, at: 0)
         }
-        print(splittedDistance)
         return splittedDistance
     }
 }
@@ -136,6 +148,29 @@ struct NoJourneyView: View {
     }
 }
 
+struct DestinationReached: View {
+    var showScreen: () -> Void
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            Text("YOU HAVE \n\n ARRIVED \n\n TO YOUR DESTINATION")
+                .foregroundColor(.white)
+                .multilineTextAlignment(.center)
+            Spacer()
+            Button(action: {
+                showScreen()
+            }) {
+                Text("New Journey")
+                    .frame(width: UIScreen.main.bounds.width / 2, height: 40, alignment: .center)
+                    .background(Color.AT.orangeDetail)
+                    .foregroundColor(.white)
+                    .padding()
+            }
+            Spacer()
+        }
+    }
+}
 
 
 

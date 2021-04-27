@@ -15,7 +15,7 @@ protocol NewJourneyViewProtocol {
 struct NewJourneyView: View {
     @ObservedObject var viewModel = NewJourneyViewModel()
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @State private var selectedDistance = "1000"
+    @State private var selectedDistance = "100"
     @State var location = CLLocationCoordinate2D()
     var distance = ["50", "100", "200", "500", "750", "1000", "1500", "2000", "5000"]
     var delegate: NewJourneyViewProtocol
@@ -37,6 +37,7 @@ struct NewJourneyView: View {
                         Text("Choose a distance to be warned:")
                             .foregroundColor(.white)
                             .font(.headline)
+                            .padding()
                         Picker("", selection: $selectedDistance) {
                             ForEach(distance, id: \.self) {
                                 Text("\($0)m")
