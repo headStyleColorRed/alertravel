@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 
 enum JourneyState {
@@ -19,6 +20,8 @@ class JourneyViewModel: NSObject, ObservableObject {
     @Published var journeyStatus: JourneyState = .noJourney
     
     private var currentJourney: Destiny?
+    private var isAppActive: Bool = true
+    private var player: AVAudioPlayer?
     
     var warningDistance: Int? {
         return currentJourney?.warnDistance
@@ -54,7 +57,7 @@ class JourneyViewModel: NSObject, ObservableObject {
             distanceToDestiny = Int(LocationManager.shared.distanceTo(location) ?? 0)
             print("Distance to destiny: \(distanceToDestiny)")
             if distanceToDestiny <= warnDistance {
-                sendArrivalNotification()
+                isAppActive ? playSound() : sendArrivalNotification()
                 endJourney()
             }
         }
@@ -71,11 +74,33 @@ class JourneyViewModel: NSObject, ObservableObject {
         let content = UNMutableNotificationContent()
         content.title = "You have arrived"
         content.subtitle = "You are already within \(getDistanceToDestiny())"
-        content.sound = UNNotificationSound.init(named:UNNotificationSoundName(rawValue: "train-horn.mp3"))
+        content.sound = UNNotificationSound.init(named:UNNotificationSoundName(rawValue: "circuit.mp3"))
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
+    }
+    
+    func playSound() {
+        guard let url = Bundle.main.url(forResource: "circuit", withExtension: "mp3") else { return }
+
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            player?.play()
+            Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { timer in
+                self.stopSound()
+            }
+
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func stopSound() {
+        player?.stop()
     }
     
     private func getDistanceToDestiny() -> Int {
@@ -87,10 +112,12 @@ class JourneyViewModel: NSObject, ObservableObject {
     // MARK: - Background Tasks
     func appWentBackground() {
         print("App went background")
+        isAppActive = false
     }
     
     func appBecameActive() {
         print("App became Active")
+        isAppActive = true
     }
 }
 

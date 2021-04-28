@@ -29,7 +29,10 @@ struct JourneyView: View, NewJourneyViewProtocol {
                                        warningDistance: viewModel.warningDistance,
                                        stopJourney: stopJourney)
                 case .inDestination:
-                    DestinationReached() { action = 1 }
+                    DestinationReached() {
+                        viewModel.stopSound()
+                        action = 1
+                    }
                 }
             }
         }
